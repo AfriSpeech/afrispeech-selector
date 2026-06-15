@@ -122,6 +122,19 @@ for batch in ds.iter(batch_size=8):
 
 No install? `python3 -m afrispeech_selector …` works the same from the repo.
 
+## Use it in a Colab / Kaggle training notebook
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/AfriSpeech/afrispeech-selector/blob/main/notebooks/afrispeech_selector.ipynb)
+[![Open in Kaggle](https://kaggle.com/static/images/open-in-kaggle.svg)](https://kaggle.com/kernels/welcome?src=https://github.com/AfriSpeech/afrispeech-selector/blob/main/notebooks/afrispeech_selector.ipynb)
+
+The example notebook is meant to be **dropped into your own training notebook**:
+its cells install the tool and pull your selected language(s) **straight into the
+running session** — stream into ASR training, or write `wavs/` + a manifest for a
+TTS framework — so your training script has the data without manual downloads.
+It's for *getting data into training*, not for making dataset copies. (On Kaggle,
+turn **Internet ON**.) See
+[`notebooks/afrispeech_selector.ipynb`](notebooks/afrispeech_selector.ipynb).
+
 ## Selecting multiple languages
 
 Everything above works for several languages too — the format/output flags are
