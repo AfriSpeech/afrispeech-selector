@@ -37,6 +37,13 @@ def test_dry_run_exits_zero(capsys):
     assert "to_pull" in out.out  # the plan table printed
 
 
+def test_total_hours_splits_evenly(capsys):
+    rc = cli.main(["--top", "8", "--max-per-country", "2", "--total-hours", "24", "--dry-run"])
+    assert rc == 0
+    err = capsys.readouterr().err
+    assert "÷ 8 languages = 3.00 h each" in err  # 24h / 8 langs
+
+
 def test_uncapped_pull_blocked():
     try:
         cli.main(["--top", "3"])

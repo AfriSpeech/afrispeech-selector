@@ -3,19 +3,21 @@
 Select African languages from
 [`AfriSpeech/african-speech-public_v1`](https://huggingface.co/datasets/AfriSpeech/african-speech-public_v1)
 by recorded **hours** (strength) — a country-balanced top-N or a hand-picked set,
-sized the way you want — and feed them **straight into training**.
+sized the way you want — and get the **audio + metadata in the format your
+training pipeline expects**. You take it from there; the tool doesn't do any text
+normalisation or cleaning (that's your framework's job).
 
-The point isn't to mint copies of the dataset; it's to put the right slice in
-front of your trainer:
+- **TTS data-prep** — export WAVs + a manifest in the layout your framework reads:
+  **LJSpeech, Piper, VITS, or MeloTTS**.
+- **ASR / 🤗 datasets** — export `load_from_disk` / Parquet, or stream straight in
+  with no local copy (`stream_dataset(...)`).
 
-- **ASR / 🤗 training** — `stream_dataset(...)` pipes the selection in lazily as an
-  `IterableDataset`. **No local copy** is written.
-- **TTS data-prep** — export a local training set in the layout your framework
-  expects: **LJSpeech, Piper, VITS, or MeloTTS** (WAVs + manifest).
+Size it however you like: a **total budget** (e.g. `--total-hours 16`), **per
+language** (clips or hours), or everything available.
 
-> **License:** the audio belongs to the source dataset. Building a *local* working
-> set for your own training is fine; redistributing copies (e.g. `--push` to a
-> public repo) is your responsibility — check the source license first.
+> **License:** the audio belongs to the source dataset. A *local* working set for
+> your own training is fine; redistributing copies (e.g. `--push` to a public
+> repo) is your responsibility — check the source license first.
 
 ## Available languages
 
@@ -193,47 +195,16 @@ pip install -e .            # gives you the `afrispeech-select` command
 
 (Use `python3` — the code uses non-ASCII text and won't run under Python 2.)
 
-## Stream into training (recommended — no copy)
-
-For ASR / 🤗 pipelines, pipe the selection straight into your trainer. Nothing is
-written to disk; samples stream on the fly:
-
-```python
-from afrispeech_selector import filter_catalog, select_top, stream_dataset
-
-pool  = filter_catalog(min_hours=10, split="train")
-langs = select_top(pool, 10, proportional=True, max_per_country=2)
-
-ds = stream_dataset(
-    langs, split="train",
-    per_language=200,          # or max_seconds=1800 for a 30-min/lang budget
-    min_clip_seconds=3, max_clip_seconds=20,
-    target_sampling_rate=16000,   # resample for your model
-    schema="asr",                 # "asr" | "whisper" | "common_voice" | default
-)
-# ds is a datasets.IterableDataset — feed it directly to your Trainer / DataLoader
-for batch in ds.iter(batch_size=8):
-    ...
-```
-
-The CLI can hand you that snippet for any selection — preview, then generate the recipe:
-
-```bash
-afrispeech-select --top 10 --max-per-country 2 --per-language 200 --dry-run
-afrispeech-select --top 10 --max-per-country 2 --per-language 200 \
-    --target-sr 16000 --schema asr --recipe
-```
-
-## Export for TTS frameworks (local training set)
+## Export for TTS frameworks (WAVs + manifest)
 
 TTS data-prep reads WAVs + a manifest from disk. Export the selection in the
 layout your framework expects (`--format`): `ljspeech` (generic / Coqui),
 `piper`, `vits`, or `melo`. Audio is written as 16-bit mono WAV at `--target-sr`
-(default 22050).
+(default 22050). Transcripts are written **verbatim** — no normalisation.
 
 ```bash
-# LJSpeech-style (wavs/ + metadata.csv: id|text|text)
-afrispeech-select --top 10 --max-per-country 2 --per-language 200 \
+# 16 hours total, LJSpeech layout (wavs/ + metadata.csv: id|text|text)
+afrispeech-select --top 10 --max-per-country 2 --total-hours 16 \
     --out ./tts_data --format ljspeech --target-sr 22050
 
 # Piper (metadata.csv: id|speaker|text) — speaker = language, multilingual-ready
@@ -242,11 +213,36 @@ afrispeech-select --languages twi_twi,ewe_ewe --per-language 500 \
 
 # VITS (filelist.txt: wavs/<id>.wav|<sid>|text + speakers.txt)
 # MeloTTS (metadata.list: wavs/<id>.wav|speaker|LANG|text)
-afrispeech-select --top 8 --per-language 300 --out ./melo_data --format vits,melo
+afrispeech-select --top 8 --total-hours 24 --out ./melo_data --format vits,melo
 ```
 
 Each writes `<out>/wavs/*.wav` plus the manifest. Speaker = language label and
-language code = ISO 639-3 — natural for multilingual TTS.
+language code = ISO 639-3 — natural for multilingual TTS. Phonemisation / text
+cleaning is left to the framework's own preprocessor.
+
+## Export for ASR / 🤗 datasets
+
+```bash
+# On-disk dataset (load_from_disk) + a parquet file, resampled to 16 kHz
+afrispeech-select --top 10 --total-hours 16 --out ./data \
+    --format disk,parquet --target-sr 16000
+```
+
+```python
+from datasets import load_from_disk
+ds = load_from_disk("data").train_test_split(test_size=0.1)
+```
+
+Or stream it in with **no local copy** (lazy `IterableDataset`):
+
+```python
+from afrispeech_selector import filter_catalog, select_top, stream_dataset
+langs = select_top(filter_catalog(min_hours=10), 10, max_per_country=2)
+ds = stream_dataset(langs, split="train", per_language=200, target_sampling_rate=16000)
+for batch in ds.iter(batch_size=8):
+    ...
+# `afrispeech-select … --recipe` prints this snippet for any selection.
+```
 
 ## Other CLI examples
 
@@ -270,6 +266,7 @@ No install? `python3 -m afrispeech_selector …` works the same from the repo.
 | `--no-proportional` | pure hours ranking, ignore country balance |
 | `--min-hours / --max-hours / --min-clips` | filter the language pool by strength |
 | `--countries GH,NG` | restrict to these countries |
+| `--total-hours H` | total audio across the selection, split evenly per language |
 | `--per-language N` | max clips per language |
 | `--max-hours-per-lang H` | duration budget per language (decimals OK, e.g. `0.5`) |
 | `--min-clip-sec / --max-clip-sec` | per-sample length window (out-of-range clips skipped while picking) |

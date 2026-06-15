@@ -139,7 +139,10 @@ def export_tts(dataset, out_dir: str | Path | None = None, *, name: str = "afris
         arr, sr = _audio_array(ex["audio"], sampling_rate)
         uid = f"{ex.get('subset', 'clip')}_{i:06d}"
         sf.write(str(wavs / f"{uid}.wav"), arr, sr, subtype="PCM_16")
-        text = " ".join((ex.get("text") or "").split())
+        # Transcript is written verbatim — no normalisation/cleaning (that's the
+        # TTS framework's job). Only line-breaks/tabs are turned into spaces so
+        # each record stays on a single manifest line.
+        text = (ex.get("text") or "").replace("\r", " ").replace("\n", " ").replace("\t", " ").strip()
         spk = ex.get("language") or ex.get("subset") or "spk"
         iso = (ex.get("iso") or "").upper()
         speakers.setdefault(spk, len(speakers))

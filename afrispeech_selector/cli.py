@@ -72,7 +72,9 @@ def build_parser() -> argparse.ArgumentParser:
     sel.add_argument("--countries", help="comma-separated ISO country codes to restrict to (e.g. GH,NG)")
     sel.add_argument("--split", choices=["train", "val", "test", "all"], default="train")
 
-    siz = p.add_argument_group("per-language sizing")
+    siz = p.add_argument_group("sizing")
+    siz.add_argument("--total-hours", type=float,
+                     help="total audio hours across the whole selection (split evenly per language)")
     siz.add_argument("--per-language", type=int, help="max clips per language")
     siz.add_argument("--max-hours-per-lang", type=float, help="duration budget per language, hours (e.g. 0.5)")
     siz.add_argument("--min-clip-sec", type=float, help="drop clips shorter than this many seconds")
@@ -183,7 +185,15 @@ def main(argv: list[str] | None = None) -> int:
         sys.exit("Specify either --top N or --languages a,b,c (see --help).")
 
     cap = args.per_language
-    secs = args.max_hours_per_lang * 3600 if args.max_hours_per_lang else None
+    if args.total_hours:
+        # Spread the total budget evenly across the selected languages.
+        secs = args.total_hours * 3600 / max(1, len(chosen))
+        print(f"Total budget {args.total_hours} h ÷ {len(chosen)} languages "
+              f"= {secs/3600:.2f} h each.", file=sys.stderr)
+    elif args.max_hours_per_lang:
+        secs = args.max_hours_per_lang * 3600
+    else:
+        secs = None
     plan = plan_samples(chosen, per_language=cap, max_seconds=secs,
                         min_clip_seconds=args.min_clip_sec, max_clip_seconds=args.max_clip_sec,
                         split=args.split)
