@@ -123,11 +123,9 @@ ds = stream_dataset(["twi_twi"], split="train", max_seconds=5 * 3600, target_sam
 
 The example notebook is meant to be **dropped into your own training notebook**:
 its cells install the tool and pull your selected language(s) **straight into the
-running session** — stream into ASR training, or write `wavs/` + a manifest for a
-TTS framework — so your training script has the data without manual downloads.
-It's for *getting data into training*, not for making dataset copies. (On Kaggle,
-turn **Internet ON**.) See
-[`notebooks/afrispeech_selector.ipynb`](notebooks/afrispeech_selector.ipynb).
+running session** — write `wavs/` + a manifest for a TTS framework, or stream into
+ASR training — so your training script has direct access to the speech data needed
+for training.
 
 ## Selecting multiple languages
 
@@ -273,7 +271,7 @@ afrispeech_selector/
   export.py     HF (zip/parquet/manifest/push) + TTS (ljspeech/piper/vits/melo)
 app.py          optional selection UI (emits the CLI command)
   data/catalog.tsv  strength table (hours, clips, splits) — bundled in the package
-scripts/        refresh_catalog.py, clean_source_dataset.py
+scripts/        refresh_catalog.py
 tests/          selection, builder, CLI tests
 ```
 
