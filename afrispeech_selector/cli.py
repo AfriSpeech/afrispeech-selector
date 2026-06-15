@@ -147,7 +147,13 @@ def _recipe(chosen, args, secs) -> str:
 
 
 def main(argv: list[str] | None = None) -> int:
+    import os
     args = build_parser().parse_args(argv)
+
+    # Optional auth: --token, else HF_TOKEN / HUGGING_FACE_HUB_TOKEN from the env.
+    # Anonymous works but the Hub rate-limits it; a token means faster downloads.
+    args.token = (args.token or os.environ.get("HF_TOKEN")
+                  or os.environ.get("HUGGING_FACE_HUB_TOKEN"))
 
     if args.list_langs:
         # Apply the same pool filters, so this doubles as "what matches my criteria".
@@ -272,7 +278,6 @@ def main(argv: list[str] | None = None) -> int:
     )
     bar.close()
 
-    import os
     if args.out:
         out_path = args.out.rstrip("/")
     else:

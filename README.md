@@ -186,8 +186,12 @@ afrispeech-select --top 10 --max-per-country 2 --dry-run          # what it woul
 | `-y` / `--yes` | skip the confirmation prompt when the request exceeds what's available |
 
 Capped pulls **stream** from the Hub and only transfer the samples you ask for.
-An uncapped "full build" downloads whole shards (the dataset is ~65 GB) and must
-be enabled with `--allow-full`.
+An uncapped "full build" downloads whole shards and must be enabled with
+`--allow-full`.
+
+Downloads work anonymously but the Hub rate-limits them; for faster, higher-rate
+downloads set a free read token — `export HF_TOKEN=hf_…` (picked up automatically)
+or pass `--token`.
 
 ## Output schema
 
