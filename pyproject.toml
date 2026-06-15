@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "afrispeech-selector"
+version = "0.1.0"
+description = "Build training sets from AfriSpeech/african-speech-public_v1 — rank African languages by hours, country-balanced selection, sample/duration/length controls, export or push to HF."
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "CC-BY-4.0" }
+dependencies = [
+    "datasets>=2.19",
+    "huggingface_hub>=0.23",
+    "soundfile>=0.12",
+    "librosa>=0.10",
+    "pandas>=2.0",
+    "pyarrow>=15.0",
+    "torch>=2.4",
+    "torchcodec>=0.2",
+]
+
+[project.optional-dependencies]
+ui = ["gradio>=4.44"]
+dev = ["pytest>=7"]
+
+[project.scripts]
+afrispeech-select = "afrispeech_selector.cli:main"
+
+[tool.setuptools]
+packages = ["afrispeech_selector"]
