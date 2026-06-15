@@ -1,8 +1,7 @@
 # AfriSpeech Selector
 
 **AfriSpeech Selector gives you access to 142 languages · 2267.9 hours · 35
-countries of African speech** — and helps you turn a slice of it into a
-training-ready dataset.
+countries of African speech for training TTS and ASR models.**
 
 Select languages by recorded **hours** (strength) — a country-balanced top-N or a
 hand-picked set, sized the way you want — and get the **audio + metadata in the
