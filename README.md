@@ -8,10 +8,14 @@ hand-picked set, sized the way you want — and get the **audio + metadata in th
 format your training pipeline expects**. You take it from there; the tool doesn't
 do any text normalisation or cleaning (that's your framework's job).
 
-- **TTS data-prep** — export WAVs + a manifest in the layout your framework reads:
-  **LJSpeech, Piper, VITS, or MeloTTS**.
-- **ASR / 🤗 datasets** — export `load_from_disk` / Parquet, or stream straight in
-  with no local copy (`stream_dataset(...)`).
+**Built for TTS first.** This is clean, **read speech with aligned transcripts** —
+exactly what text-to-speech training wants. Export WAVs + a manifest in the layout
+your framework reads: **LJSpeech, Piper, VITS, or MeloTTS**.
+
+> Using it for **ASR** too? You can (`load_from_disk` / Parquet, or stream in with
+> `stream_dataset(...)`) — but note it's relatively clean, single-domain read
+> speech, so it's best as a *supplement* to more varied/spontaneous audio rather
+> than a stand-alone ASR set.
 
 Size it however you like: a **total budget** (e.g. `--total-hours 16`), **per
 language** (clips or hours), or everything available.
@@ -43,9 +47,10 @@ pip install -e .            # gives you the `afrispeech-select` command
 
 ## Quickstart — one language, ready to train
 
-Most people just want one language. Pick its name (`afrispeech-select --list-langs`,
-or the table below) and run one command. Clips are filtered to a **3–15 s** window
-by default, so the result is training-ready.
+Most people just want one language for **TTS**. Pick its name
+(`afrispeech-select --list-langs`, or the catalog at the bottom) and run one
+command. Clips are filtered to a **3–15 s** window by default, so the result is
+training-ready.
 
 ```bash
 # ~5 hours of Twi as an LJSpeech TTS dataset (wavs/ + metadata.csv), 22.05 kHz
@@ -53,10 +58,9 @@ afrispeech-select --languages twi_twi --total-hours 5 --out ./twi --format ljspe
 
 # …for Piper / VITS / MeloTTS instead, just change --format:
 afrispeech-select --languages twi_twi --total-hours 5 --out ./twi --format piper
-
-# …for ASR (Hugging Face datasets on disk, 16 kHz):
-afrispeech-select --languages twi_twi --total-hours 5 --out ./twi --format disk --target-sr 16000
 ```
+
+(ASR is possible too — see [Using it for ASR](#using-it-for-asr-on-the-side) below.)
 
 That's it — `./twi` now holds the audio + metadata in the right layout. Want more
 or less? Change `--total-hours` (or use `--per-language N` for a clip count).
@@ -96,10 +100,17 @@ afrispeech-select --languages twi_twi --total-hours 5 --out ./twi --format vits,
 Each writes `<out>/wavs/*.wav` plus the manifest. Phonemisation / text cleaning
 is left to the framework's own preprocessor.
 
-## Export one language for ASR / 🤗 datasets
+No install? `python3 -m afrispeech_selector …` works the same from the repo.
+
+## Using it for ASR (on the side)
+
+> **Caveat:** this is clean, single-domain read speech. It can help ASR — e.g.
+> bootstrapping or augmenting low-resource languages — but on its own it won't
+> reflect spontaneous or noisy real-world audio. Treat it as a *supplement*.
+
+Export an on-disk 🤗 dataset, or stream it straight into a Trainer with no copy:
 
 ```bash
-# On-disk dataset (load_from_disk) + a parquet file, resampled to 16 kHz
 afrispeech-select --languages twi_twi --total-hours 5 --out ./twi \
     --format disk,parquet --target-sr 16000
 ```
@@ -107,20 +118,11 @@ afrispeech-select --languages twi_twi --total-hours 5 --out ./twi \
 ```python
 from datasets import load_from_disk
 ds = load_from_disk("twi").train_test_split(test_size=0.1)
-```
 
-Or stream it in with **no local copy** (lazy `IterableDataset`):
-
-```python
+# …or stream (no local copy) — `afrispeech-select … --recipe` prints this:
 from afrispeech_selector import stream_dataset
-ds = stream_dataset(["twi_twi"], split="train", max_seconds=5 * 3600,
-                    target_sampling_rate=16000)   # min/max clip default to 3/15s
-for batch in ds.iter(batch_size=8):
-    ...
-# `afrispeech-select … --recipe` prints this snippet for any selection.
+ds = stream_dataset(["twi_twi"], split="train", max_seconds=5 * 3600, target_sampling_rate=16000)
 ```
-
-No install? `python3 -m afrispeech_selector …` works the same from the repo.
 
 ## Use it in a Colab / Kaggle training notebook
 
