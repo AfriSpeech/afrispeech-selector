@@ -22,9 +22,21 @@ from the catalog instead.
 
 from __future__ import annotations
 
+import re
 from typing import Callable, Iterable
 
 from .catalog import DATASET_ID, LanguageEntry, by_subset
+
+_DIGIT_RE = re.compile(r"\d")
+
+
+def _text_has_numbers(text) -> bool:
+    """Return True if *text* contains any digit character (0-9).
+
+    Clips whose transcription contains digits are excluded by default because
+    number-heavy transcripts tend to have poor text–audio alignment.
+    """
+    return bool(text and _DIGIT_RE.search(text))
 
 STANDARD_COLUMNS = ["audio", "text", "language", "country", "length", "iso", "subset"]
 
@@ -117,6 +129,15 @@ def build_subset(
         ds = ds.filter(
             lambda b: [(x is not None and lo <= float(x) <= hi) for x in b[_dc]],
             batched=True, desc=f"length filter {entry.subset}",
+        )
+
+    # Drop clips whose transcription contains digits — number-heavy text
+    # correlates with poor text–audio alignment.
+    _tc = _pick_text_column(ds.column_names)
+    if _tc:
+        ds = ds.filter(
+            lambda b: [not _text_has_numbers(t) for t in b[_tc]],
+            batched=True, desc=f"number filter {entry.subset}",
         )
 
     if (per_language is not None or max_seconds is not None) and len(ds):
@@ -249,9 +270,13 @@ def _build_subset_streaming(
                 continue
             if max_clip_seconds is not None and length > max_clip_seconds:
                 continue
+            # Drop clips whose transcription contains digits.
+            clip_text = ex.get(text_col, "") if text_col else ""
+            if _text_has_numbers(clip_text):
+                continue
             rows.append({
                 "audio": audio,
-                "text": ex.get(text_col, "") if text_col else "",
+                "text": clip_text,
                 "language": entry.language,
                 "country": entry.country,
                 "length": length,
@@ -446,9 +471,13 @@ def _iter_rows(subsets, split, per_language, max_seconds,
                     continue
                 if max_clip_seconds is not None and length > max_clip_seconds:
                     continue
+                # Drop clips whose transcription contains digits.
+                clip_text = ex.get(text_col, "") if text_col else ""
+                if _text_has_numbers(clip_text):
+                    continue
                 yield {
                     "audio": audio,
-                    "text": ex.get(text_col, "") if text_col else "",
+                    "text": clip_text,
                     "language": entry.language, "country": entry.country,
                     "length": length, "iso": entry.iso, "subset": entry.subset,
                 }
