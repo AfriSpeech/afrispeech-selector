@@ -6,12 +6,15 @@ in a fixed training-ready schema, and export it.
 """
 
 from .catalog import (
-    DATASET_ID,
     COUNTRY_NAMES,
+    DATASETS,
+    DATASET_NAMES,
+    DATASET_ID,
     LanguageEntry,
     by_subset,
     countries,
     load_catalog,
+    resolve_dataset,
 )
 from .selector import filter_catalog, plan_samples, select_top
 from .builder import (
@@ -33,11 +36,14 @@ from .export import (
 
 __all__ = [
     "DATASET_ID",
+    "DATASETS",
+    "DATASET_NAMES",
     "COUNTRY_NAMES",
     "LanguageEntry",
     "by_subset",
     "countries",
     "load_catalog",
+    "resolve_dataset",
     "filter_catalog",
     "plan_samples",
     "select_top",

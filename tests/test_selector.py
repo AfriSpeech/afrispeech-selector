@@ -11,10 +11,18 @@ from afrispeech_selector.selector import filter_catalog, plan_samples, select_to
 
 def test_catalog_loads():
     cat = load_catalog()
-    assert len(cat) == 142
+    assert len(cat) == 369
     twi = next(e for e in cat if e.subset == "twi_twi")
     assert twi.country == "GH" and abs(twi.hours - 50.32) < 1e-6
     assert twi.train + twi.val + twi.test <= twi.clips
+    # multi-source catalog: one entry per dataset carries its source id
+    from collections import Counter
+    assert Counter(e.dataset for e in cat) == {
+        "afrispeech": 142, "waxal": 34, "omnilingual": 174, "open-bible": 19}
+    waxal = next(e for e in cat if e.dataset == "waxal")
+    assert waxal.dataset_id == "google/WaxalNLP"
+    assert waxal.dataset_name == "Google WaxalNLP"
+    assert next(e for e in cat if e.dataset == "open-bible").dataset != "afrispeech"
 
 
 def test_min_max_hours_filter():

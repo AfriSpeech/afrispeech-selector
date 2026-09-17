@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "afrispeech-selector"
 version = "0.1.0"
-description = "Build training sets from AfriSpeech/african-speech-public_v1 — rank African languages by hours, country-balanced selection, sample/duration/length controls, export or push to HF."
+description = "Build training sets from 4 African speech corpora (AfriSpeech, Google WaxalNLP, Meta OmniLingual ASR, Open Bible) — rank African languages by hours, country-balanced selection, sample/duration/length controls, export or push to HF."
 readme = "README.md"
 requires-python = ">=3.9"
 license = { text = "CC-BY-4.0" }

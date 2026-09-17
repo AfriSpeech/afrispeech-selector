@@ -23,9 +23,10 @@ from the catalog instead.
 from __future__ import annotations
 
 import re
+from pathlib import Path
 from typing import Callable, Iterable
 
-from .catalog import DATASET_ID, LanguageEntry, by_subset
+from .catalog import LanguageEntry, by_subset, resolve_dataset
 
 _DIGIT_RE = re.compile(r"\d")
 
@@ -43,7 +44,7 @@ STANDARD_COLUMNS = ["audio", "text", "language", "country", "length", "iso", "su
 # Candidate source column names we map onto our standard `text` column.
 _TEXT_CANDIDATES = (
     "text", "sentence", "transcript", "transcription", "transcription_text",
-    "normalized_text", "normalised_text", "translation",
+    "normalized_text", "normalised_text", "translation", "raw_text",
 )
 # Candidate source column names that already carry a duration in seconds.
 _DURATION_CANDIDATES = ("length", "duration", "duration_seconds", "audio_length")
@@ -74,13 +75,15 @@ def build_subset(
     min_clip_seconds: float | None = None,
     max_clip_seconds: float | None = None,
     seed: int = 42,
-    dataset_id: str = DATASET_ID,
+    dataset_id: str | None = None,
     token: str | None = None,
     streaming: bool = False,
     on_clip=None,
 ):
     """Load one subset, cap it, and reshape to the standard schema.
 
+    ``dataset_id`` defaults to the entry's own source dataset (the HF repo that
+    backs ``entry.dataset``), so catalog rows can point at different corpora.
     Returns a :class:`datasets.Dataset`. ``split="all"`` concatenates the
     available splits. Sampling (when ``per_language`` caps the size) is a
     deterministic shuffle so reruns with the same seed are reproducible.
@@ -100,6 +103,7 @@ def build_subset(
     nothing for a capped request — essential on a small Space where a full
     parquet download would time out.
     """
+    dataset_id = resolve_dataset(dataset_id) if dataset_id else entry.dataset_id
     if streaming:
         return _build_subset_streaming(
             entry, split=split, per_language=per_language, max_seconds=max_seconds,
@@ -232,7 +236,13 @@ def _build_subset_streaming(
     """
     from datasets import Audio, Dataset, Features, Value, load_dataset
 
-    splits = ("train", "validation", "test") if split == "all" else (split,)
+    if split == "all":
+        # Only touch splits the source actually has (e.g. Open Bible has
+        # train/test but no validation).
+        splits = [sp for sp in ("train", "validation", "test")
+                  if entry.split_size("val" if sp == "validation" else sp) > 0]
+    else:
+        splits = (split,)
     # Map our catalog's "val" terminology to the Hub's "validation" split name.
     split_alias = {"val": "validation"}
 
@@ -264,7 +274,7 @@ def _build_subset_streaming(
                 stop = True
                 break
             audio = ex.get("audio")  # {"bytes":..., "path":...} (undecoded)
-            length = float(ex[dur_col]) if dur_col and ex.get(dur_col) is not None else _audio_len(audio)
+            length = float(ex[dur_col]) if dur_col and ex.get(dur_col) is not None else _audio_len_undecoded(audio)
             # Drop clips outside the requested length range (not counted).
             if min_clip_seconds is not None and length < min_clip_seconds:
                 continue
@@ -332,6 +342,42 @@ def _audio_len(audio) -> float:
         return 0.0
 
 
+def _audio_len_undecoded(audio) -> float:
+    """Duration in seconds from a streamed (undecoded) HF audio value.
+
+    Streamed audio arrives as {"bytes": ..., "path": ...}. We read just the
+    header (via ``soundfile`` — a datasets audio dependency) so we never decode
+    the waveform to learn its length. Falls back to a full decode, then to 0.
+    """
+    if audio is None:
+        return 0.0
+    if isinstance(audio, dict):
+        data = audio.get("bytes")
+        path = audio.get("path")
+        if data is None and path:
+            try:
+                data = Path(path).read_bytes()
+            except Exception:
+                data = None
+        if data:
+            try:
+                import io
+                import soundfile as sf
+                info = sf.info(io.BytesIO(data))
+                if info.samplerate and info.frames:
+                    return round(info.frames / info.samplerate, 3)
+            except Exception:
+                pass
+            try:
+                from datasets import Audio
+                dec = Audio().decode_example({"bytes": data, "path": path})
+                return _audio_len(dec)
+            except Exception:
+                return 0.0
+    # Already-decoded value.
+    return _audio_len(audio)
+
+
 def build_dataset(
     entries: Iterable[LanguageEntry],
     *,
@@ -343,7 +389,7 @@ def build_dataset(
     target_sampling_rate: int | None = None,
     schema: str | None = None,
     seed: int = 42,
-    dataset_id: str = DATASET_ID,
+    dataset_id: str | None = None,
     token: str | None = None,
     streaming: bool = False,
     progress: Callable[[str], None] | None = None,
@@ -356,6 +402,8 @@ def build_dataset(
     :func:`stream_dataset`, which streams lazily and never writes a copy.
 
     ``entries`` may be :class:`LanguageEntry` objects or subset-name strings.
+    Each catalog entry resolves to its own source dataset unless an explicit
+    ``dataset_id`` is passed (which applies to every selected subset).
     ``per_language`` caps clips per language; ``max_seconds`` caps total audio
     duration per language (whichever is hit first). ``min_clip_seconds`` /
     ``max_clip_seconds`` drop individual clips outside that length range before
@@ -440,17 +488,22 @@ def _iter_rows(subsets, split, per_language, max_seconds,
     from datasets import Audio, load_dataset
 
     split_alias = {"val": "validation"}
-    splits = ("train", "validation", "test") if split == "all" else (split,)
     for sub in subsets:
         entry = by_subset(sub)
         if entry is None:
             continue
+        dsid = resolve_dataset(dataset_id) if dataset_id else entry.dataset_id
+        if split == "all":
+            splits = [sp for sp in ("train", "validation", "test")
+                      if entry.split_size("val" if sp == "validation" else sp) > 0]
+        else:
+            splits = (split,)
         avg = (entry.hours * 3600 / entry.clips) if entry.clips else 1.0
         est = per_language or (int(max_seconds / avg) + 1 if max_seconds else 0)
         buffer = max(1000, min(10000, est * 4)) if est else 1000
         count, acc, stop = 0, 0.0, False
         for sp in splits:
-            ds = load_dataset(dataset_id, sub, split=split_alias.get(sp, sp),
+            ds = load_dataset(dsid, sub, split=split_alias.get(sp, sp),
                               streaming=True, token=token)
             if per_language is not None or max_seconds is not None:
                 ds = ds.shuffle(seed=seed, buffer_size=buffer)
@@ -466,7 +519,7 @@ def _iter_rows(subsets, split, per_language, max_seconds,
                     stop = True
                     break
                 audio = ex.get("audio")
-                length = float(ex[dur_col]) if dur_col and ex.get(dur_col) is not None else _audio_len(audio)
+                length = float(ex[dur_col]) if dur_col and ex.get(dur_col) is not None else _audio_len_undecoded(audio)
                 if min_clip_seconds is not None and length < min_clip_seconds:
                     continue
                 if max_clip_seconds is not None and length > max_clip_seconds:
@@ -498,7 +551,7 @@ def stream_dataset(
     target_sampling_rate: int | None = None,
     schema: str | None = None,
     seed: int = 42,
-    dataset_id: str = DATASET_ID,
+    dataset_id: str | None = None,
     token: str | None = None,
 ):
     """Stream a selection straight into training as a lazy ``IterableDataset``.
@@ -507,8 +560,9 @@ def stream_dataset(
     a local copy** of the dataset — you select languages and feed the result
     directly to your trainer. Same selection knobs as :func:`build_dataset`
     (caps, duration budget, length window), plus ``target_sampling_rate`` and
-    ``schema`` to match your training framework. Returns a
-    :class:`datasets.IterableDataset` with the standard schema (or the reshaped
+    ``schema`` to match your training framework. Each catalog entry resolves to
+    its own source dataset unless ``dataset_id`` overrides every subset. Returns
+    a :class:`datasets.IterableDataset` with the standard schema (or the reshaped
     one). The duration budget may overshoot by at most one clip in this mode.
     """
     from datasets import Audio, Features, IterableDataset, Value

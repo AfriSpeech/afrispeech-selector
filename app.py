@@ -27,7 +27,7 @@ from afrispeech_selector.catalog import COUNTRY_NAMES
 CATALOG = load_catalog()
 SPLITS = ["train", "val", "test", "all"]
 LANG_LABELS = {
-    f"{e.language} — {e.country_name} ({e.subset}, {e.hours:.1f}h)": e.subset
+    f"{e.language} — {e.country_name} ({e.subset}, {e.hours:.1f}h, {e.dataset})": e.subset
     for e in sorted(CATALOG, key=lambda x: x.language)
 }
 COUNTRY_CHOICES = [f"{c} — {COUNTRY_NAMES.get(c, c)}" for c in countries()]

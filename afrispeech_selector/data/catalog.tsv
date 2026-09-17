@@ -1,143 +1,370 @@
-subset	language	iso	country	clips	hours	train	val	test
-abbey_aba	Abbey	aba	CI	1776	5.03	1574	166	36
-ahanta_aha	Ahanta	aha	GH	6908	20.30	6038	441	429
-aja_ajg	Aja	ajg	BJ	1942	5.71	1765	105	72
-amharic_amh	Amharic	amh	ET	11415	33.59	10340	603	472
-atti_ati	Attié	ati	CI	482	1.40	477	5	0
-baoule_bci	Baoule	bci	CI	2657	8.08	2307	125	225
-bassa_cameroon_bas	Bassa (Cameroon)	bas	CM	16269	48.58	14981	620	668
-bassa_liberia_bsq	Bassa (Liberia)	bsq	LR	2284	6.07	2135	12	137
-bissau_guinean_creole_pov	Bissau Guinean Creole	pov	GW	6573	19.35	5899	375	299
-boulou_bum	Boulou	bum	CM	5692	16.93	5153	231	308
-changana_mozambique_tso	Changana (Mozambique)	tso	MZ	12394	35.77	11369	478	547
-chichewa_nya	Chichewa	nya	MW	3884	12.81	3407	231	246
-chitonga_malawi_tog	Chitonga (Malawi)	tog	MW	1480	4.16	1363	65	52
-chitonga_toi	Chitonga	toi	ZM	2487	6.61	2220	195	72
-chitonga_zimbabwe_toi	Chitonga (Zimbabwe)	toi	ZW	486	1.41	452	0	34
-chitumbuka_tum	Chitumbuka	tum	MW	10365	29.31	9303	623	439
-chiyao_yao	Chiyao	yao	MZ	1647	4.61	1423	103	121
-chokwe_cjk	Chokwe	cjk	AO	177	0.56	169	0	8
-chopi_cce	Chopi	cce	MZ	3789	10.80	3414	144	231
-chuabo_chw	Chuabo	chw	MZ	390	1.03	373	0	17
-cibemba_bem	Cibemba	bem	ZM	3823	10.56	3333	170	320
-cinamwanga_mwn	Cinamwanga	mwn	ZM	553	1.66	500	53	0
-cinyanja_nya	Cinyanja	nya	MW	1883	5.79	1765	42	76
-dagaare_dga	Dagaare	dga	GH	7477	21.53	6575	375	527
-damara_naq	Damara	naq	NA	789	2.46	698	62	29
-dangme_ada	Dangme	ada	GH	1177	3.37	941	154	82
-dinka_din	Dinka	din	SS	2496	6.84	2178	99	219
-douala_dua	Douala	dua	CM	6521	20.12	5832	145	544
-edo_bin	Edo	bin	NG	9028	26.04	8323	346	359
-esan_ish	Esan	ish	NG	8499	24.19	7356	708	435
-ewe_ewe	Ewe	ewe	GH	9760	29.41	8633	611	516
-ewondo_ewo	Ewondo	ewo	CM	1305	3.71	1134	32	139
-fang_fan	Fang	fan	GQ	3969	11.68	3630	184	155
-fante_fat	Fante	fat	GH	7631	22.04	6942	277	412
-fon_fon	Fon	fon	BJ	10912	33.19	10039	459	414
-frafra_gur	Frafra	gur	GH	7960	23.82	7140	398	422
-ga_gaa	Ga	gaa	GH	11939	35.12	10703	632	604
-gitonga_toh	Gitonga	toh	MZ	1319	3.60	1228	4	87
-gokana_gkn	Gokana	gkn	NG	2808	7.98	2567	179	62
-gu_r_gxx	Guéré	gxx	CI	1057	3.01	953	67	37
-gun_guw	Gun	guw	BJ	13340	39.98	12157	494	689
-hausa_hau	Hausa	hau	NG	9367	28.37	8364	509	494
-havu_hav	Havu	hav	CD	2619	7.59	2447	172	0
-herero_her	Herero	her	NA	192	0.61	192	0	0
-ibinda_yom	Ibinda	yom	CD	2672	7.46	2508	59	105
-igbo_ibo	Igbo	ibo	NG	12639	38.07	11379	556	704
-ijaw_ijc	Ijaw	ijc	NG	312	0.88	292	0	20
-isoko_iso	Isoko	iso	NG	9474	26.84	8544	447	483
-itsekiri_its	Itsekiri	its	NG	2387	6.78	2387	0	0
-jula_dyu	Jula	dyu	BF	5486	15.85	5019	258	209
-kabiye_kbp	Kabiye	kbp	TG	18211	53.19	16328	825	1058
-kabuverdianu_kea	Kabuverdianu	kea	CV	19728	58.07	18156	699	873
-kabyle_kab	Kabyle	kab	DZ	1188	3.65	1068	64	56
-kamba_kam	Kamba	kam	KE	9567	28.86	8603	348	616
-kanyok_kny	Kanyok	kny	CD	109	0.28	109	0	0
-khana_ogo	Khana	ogo	NG	1256	3.62	921	139	196
-kikongo_kwy	Kikongo	kwy	AO	1769	4.87	1623	103	43
-kikongo_ya_leta_ktu	Kikongo ya Leta	ktu	CD	4754	13.81	4232	262	260
-kikuyu_kik	Kikuyu	kik	KE	9640	28.82	8808	413	419
-kiluba_lub	Kiluba	lub	CD	12949	38.31	11553	679	717
-kimbundu_kmb	Kimbundu	kmb	AO	2894	8.32	2468	249	177
-kinande_nnb	Kinande	nnb	CD	2871	8.15	2637	44	190
-kinyarwanda_kin	Kinyarwanda	kin	RW	12012	35.57	10517	606	889
-kirundi_run	Kirundi	run	BI	12399	35.62	11116	550	733
-kisi_kss	Kisi	kss	LR	7739	20.99	6967	377	395
-kisonge_sop	Kisonge	sop	CD	141	0.40	141	0	0
-kituba_ktu	Kituba	ktu	CD	3935	11.24	3639	195	101
-kongo_kon	Kongo	kon	CD	9980	27.82	8828	474	678
-kpelle_xpe	Kpelle	xpe	LR	1933	5.70	1743	112	78
-krio_kri	Krio	kri	SL	9230	26.16	8293	553	384
-kwangali_kwn	Kwangali	kwn	NA	2258	6.75	2139	81	38
-kwanyama_kua	Kwanyama	kua	NA	6107	16.66	5467	239	401
-lari_ldi	Lari	ldi	CG	1359	3.85	1284	42	33
-lenje_leh	Lenje	leh	ZM	8099	22.52	7198	412	489
-liberian_english_lir	Liberian English	lir	LR	7733	22.06	7112	335	286
-lingala_lin	Lingala	lin	CD	10080	30.71	9076	414	590
-loma_lom	Loma	lom	LR	1540	4.52	1350	41	149
-lomwe_ngl	Lomwe	ngl	MZ	378	1.07	373	5	0
-luganda_lug	Luganda	lug	UG	3617	11.25	3237	75	305
-lunda_lun	Lunda	lun	ZM	423	1.11	322	101	0
-luo_luo	Luo	luo	KE	6829	19.66	5959	367	503
-luvale_lue	Luvale	lue	ZM	20	0.07	20	0	0
-macua_vmw	Macua	vmw	MZ	10144	28.02	8966	682	496
-makhuwa_marrevone_xmc	Makhuwa-Marrevone	xmc	MZ	704	1.87	635	41	28
-makhuwa_meetto_mgh	Makhuwa-Meetto	mgh	MZ	671	1.83	552	85	34
-makhuwa_shirima_vmk	Makhuwa-Shirima	vmk	MZ	277	0.77	277	0	0
-malagasy_mlg	Malagasy	mlg	MG	20287	61.32	18900	746	641
-mambwe_lungu_mgr	Mambwe-Lungu	mgr	ZM	331	0.93	264	34	33
-manyawa_mny	Manyawa	mny	MZ	697	1.94	697	0	0
-mashi_shr	Mashi	shr	CD	4263	12.41	3855	273	135
-mauritian_creole_mfe	Mauritian Creole	mfe	MU	15088	43.57	13115	822	1151
-meru_mer	Meru	mer	KE	1277	3.83	1139	138	0
-moore_mos	Moore	mos	BF	6785	20.51	6293	196	296
-ndau_ndc	Ndau	ndc	MZ	1231	3.34	1147	68	16
-ndau_western_ndc	Ndau (Western)	ndc	MZ	3621	10.22	3235	239	147
-ndebele_nbl	Ndebele	nbl	ZA	1985	5.15	1819	134	32
-ndebele_zimbabwe_nde	Ndebele (Zimbabwe)	nde	ZW	2552	7.62	2308	81	163
-ndonga_ndo	Ndonga	ndo	NA	1920	5.77	1745	63	112
-ngangela_nba	Ngangela	nba	AO	3638	10.28	3348	166	124
-ngbandi_northern_ngb	Ngbandi (Northern)	ngb	CD	255	0.78	222	33	0
-nsenga_mozambique_nse	Nsenga (Mozambique)	nse	MZ	2865	8.09	2385	313	167
-nyaneka_nyk	Nyaneka	nyk	AO	14731	42.94	13430	858	443
-nyungwe_nyu	Nyungwe	nyu	MZ	2976	8.35	2744	63	169
-nzema_nzi	Nzema	nzi	GH	7319	21.14	6413	532	374
-oromo_orm	Oromo	orm	ET	8933	25.66	7778	557	598
-otetela_tll	Otetela	tll	CD	11301	31.53	10316	463	522
-phimbi_phm	Phimbi	phm	MZ	3561	10.00	3172	121	268
-pidgin_west_africa_wes	Pidgin (West Africa)	wes	CM	7405	21.09	6785	227	393
-r_union_creole_rcf	Réunion Creole	rcf	RE	1803	5.25	1718	23	62
-ronga_rng	Ronga	rng	MZ	10285	29.11	9138	642	505
-runyankore_nyn	Runyankore	nyn	UG	5605	17.10	4736	432	437
-sango_sag	Sango	sag	CF	4193	12.60	3645	261	287
-sehwi_sfw	Sehwi	sfw	GH	6024	17.48	5488	199	337
-sena_seh	Sena	seh	MZ	7849	22.84	7019	341	489
-sepedi_nso	Sepedi	nso	ZA	7016	19.59	6435	396	185
-sesotho_lesotho_sot	Sesotho (Lesotho)	sot	ZA	7944	22.76	7052	390	502
-sesotho_south_africa_sot	Sesotho (South Africa)	sot	ZA	8149	23.32	7583	332	234
-setswana_tsn	Setswana	tsn	ZA	4828	13.84	4232	344	252
-seychelles_creole_crs	Seychelles Creole	crs	SC	4269	12.16	3983	72	214
-shona_sna	Shona	sna	ZW	17996	53.30	15954	1161	881
-swahili_congo_swc	Swahili (Congo)	swc	CD	6493	18.67	5670	503	320
-swahili_katanga_swc	Swahili (Katanga)	swc	CD	866	2.40	798	32	36
-swahili_swa	Swahili	swa	TZ	13101	38.73	11781	703	617
-swati_ssw	Swati	ssw	ZA	3236	9.42	2767	170	299
-taabwa_tap	Taabwa	tap	CD	195	0.56	163	0	32
-tewe_twx	Tewe	twx	MZ	1251	3.39	1076	148	27
-tiv_tiv	Tiv	tiv	NG	1374	4.03	1220	119	35
-toupouri_tui	Toupouri	tui	CM	3070	8.96	2588	292	190
-tshiluba_lua	Tshiluba	lua	CD	3532	11.24	3234	158	140
-tshwa_tsc	Tshwa	tsc	MZ	5221	14.99	4651	209	361
-tsonga_tso	Tsonga	tso	ZA	11838	35.25	10710	682	446
-twi_twi	Twi	twi	GH	17140	50.32	15794	828	518
-umbundu_umb	Umbundu	umb	AO	1630	4.70	1340	227	63
-urhobo_urh	Urhobo	urh	NG	8944	25.67	7946	447	551
-venda_ven	Venda	ven	ZA	2990	8.65	2721	135	134
-wolaita_wal	Wolaita	wal	ET	1476	4.28	1250	133	93
-wolof_wol	Wolof	wol	SN	846	2.50	803	10	33
-xhosa_xho	Xhosa	xho	ZA	11485	33.15	10073	658	754
-yacouba_daf	Yacouba	daf	CI	787	2.26	656	0	131
-yombe_yom	Yombe	yom	CD	1634	4.88	1390	149	95
-yoruba_yor	Yoruba	yor	NG	4960	14.19	4504	216	240
-zulu_zul	Zulu	zul	ZA	12434	36.98	11540	571	323
+subset	language	iso	country	clips	hours	train	val	test	dataset
+tir_asr	Tigrinya	tir	ER	50315	143.52	40856	4425	5034	waxal
+Chichewa	Chichewa	nya	MW	30322	139.02	28805	0	1517	open-bible
+wal_asr	Wolaytta	wal	ET	47291	134.89	41833	2444	3014	waxal
+sid_asr	Sidamo	sid	ET	45404	129.51	38752	3091	3561	waxal
+orm_asr	Oromo	orm	ET	45045	128.49	38185	3078	3782	waxal
+amh_asr	Amharic	amh	ET	44354	126.51	38022	2912	3420	waxal
+Igbo	Igbo	ibo	NG	30011	119.02	28510	0	1501	open-bible
+Gamo	Gamo	gmv	ET	30200	118.78	28690	0	1510	open-bible
+Ndebele	North Ndebele	nde	BW	30161	111.17	28652	0	1509	open-bible
+Lingala	Lingala	lin	CD	28790	108.68	27350	0	1440	open-bible
+Kikuyu	Kikuyu	kik	KE	30722	107.76	29185	0	1537	open-bible
+Dawro	Dawro	dwr	ET	29579	99.94	28100	0	1479	open-bible
+Yoruba	Yoruba	yor	BJ	30625	95.84	29093	0	1532	open-bible
+Oromo	Oromo	orm	ET	30413	93.68	28892	0	1521	open-bible
+Swahili	Swahili (macrolanguage)	swa	BI	30634	93.06	29102	0	1532	open-bible
+Luganda	Ganda	lug	UG	30440	91.11	28918	0	1522	open-bible
+Ewe	Ewe	ewe	GH	30164	86.24	28655	0	1509	open-bible
+Hausa	Hausa	hau	BF	30717	83.64	29181	0	1536	open-bible
+Shona	Shona	sna	BW	30685	82.42	29150	0	1535	open-bible
+Twi (Asante)	Twi	twi	GH	30565	78.92	29036	0	1529	open-bible
+Gofa	Gofa	gof	ET	30388	78.76	28868	0	1520	open-bible
+ful_asr	Fulah	ful	NG	23881	68.12	19132	2358	2391	waxal
+Dholuo	Luo (Kenya and Tanzania)	luo	KE	30429	67.36	28907	0	1522	open-bible
+mlg_asr	Malagasy	mlg	MG	23086	65.85	18526	2270	2290	waxal
+malagasy_mlg	Malagasy	mlg	MG	20287	61.32	18900	746	641	afrispeech
+kabuverdianu_kea	Kabuverdianu	kea	CV	19728	58.07	18156	699	873	afrispeech
+Twi (Akuapem)	Twi	twi	GH	30270	55.28	28756	0	1514	open-bible
+dga_asr	Southern Dagaare	dga	GH	18874	53.84	15071	1893	1910	waxal
+ewe_asr	Ewe	ewe	GH	18861	53.8	15054	1916	1891	waxal
+shona_sna	Shona	sna	ZW	17996	53.3	15954	1161	881	afrispeech
+kabiye_kbp	Kabiye	kbp	TG	18211	53.19	16328	825	1058	afrispeech
+ydd_Hebr	Eastern Yiddish (Hebr script)	ydd	ZA	3000	51.8	1950	300	750	omnilingual
+bmm_Latn	Northern Betsimisaraka Malagasy	bmm	MG	2998	51.76	2998	0	0	omnilingual
+orc_Latn	Orma	orc	KE	2998	51.76	1500	900	598	omnilingual
+bzc_Latn	Southern Betsimisaraka Malagasy	bzc	MG	2997	51.75	2997	0	0	omnilingual
+tkg_Latn	Tesaka Malagasy	tkg	MG	2997	51.75	2099	598	300	omnilingual
+plt_Latn	Plateau Malagasy	plt	MG	2995	51.71	2995	0	0	omnilingual
+lin_asr	Lingala	lin	CD	18110	51.66	14400	1844	1866	waxal
+fuf_Latn	Pular	fuf	GN	2983	51.51	2983	0	0	omnilingual
+arz_Arab	Egyptian Arabic (Arab script)	arz	EG	2980	51.45	2384	298	298	omnilingual
+ayl_Arab	Libyan Arabic (Arab script)	ayl	EG	2980	51.45	2384	298	298	omnilingual
+kpo_asr	Ikposo	kpo	GH	18020	51.4	14415	1760	1845	waxal
+fui_Latn	Bagirmi Fulfulde	fui	CF	2964	51.18	2964	0	0	omnilingual
+dag_asr	Dagbani	dag	GH	17819	50.83	14231	1750	1838	waxal
+aeb_Arab	Tunisian Arabic (Arab script)	aeb	DZ	2925	50.5	2925	0	0	omnilingual
+twi_twi	Twi	twi	GH	17140	50.32	15794	828	518	afrispeech
+sna_asr	Shona	sna	ZW	17585	50.16	14109	1727	1749	waxal
+bassa_cameroon_bas	Bassa (Cameroon)	bas	CM	16269	48.58	14981	620	668	afrispeech
+msh_Latn	Masikoro Malagasy	msh	MG	2697	46.57	2697	0	0	omnilingual
+xmv_Latn	Antankarana Malagasy	xmv	MG	2546	43.96	1803	450	293	omnilingual
+mauritian_creole_mfe	Mauritian Creole	mfe	MU	15088	43.57	13115	822	1151	afrispeech
+nyaneka_nyk	Nyaneka	nyk	AO	14731	42.94	13430	858	443	afrispeech
+fuc_Latn	Pulaar	fuc	GM	2470	42.65	2470	0	0	omnilingual
+gun_guw	Gun	guw	BJ	13340	39.98	12157	494	689	afrispeech
+swahili_swa	Swahili	swa	TZ	13101	38.73	11781	703	617	afrispeech
+kiluba_lub	Kiluba	lub	CD	12949	38.31	11553	679	717	afrispeech
+igbo_ibo	Igbo	ibo	NG	12639	38.07	11379	556	704	afrispeech
+zulu_zul	Zulu	zul	ZA	12434	36.98	11540	571	323	afrispeech
+aka_asr	Akan	aka	GH	12752	36.37	10107	1123	1522	waxal
+changana_mozambique_tso	Changana (Mozambique)	tso	MZ	12394	35.77	11369	478	547	afrispeech
+kirundi_run	Kirundi	run	BI	12399	35.62	11116	550	733	afrispeech
+kinyarwanda_kin	Kinyarwanda	kin	RW	12012	35.57	10517	606	889	afrispeech
+tsonga_tso	Tsonga	tso	ZA	11838	35.25	10710	682	446	afrispeech
+ga_gaa	Ga	gaa	GH	11939	35.12	10703	632	604	afrispeech
+bhr_Latn	Bara Malagasy	bhr	MG	1952	33.7	1952	0	0	omnilingual
+amharic_amh	Amharic	amh	ET	11415	33.59	10340	603	472	afrispeech
+fon_fon	Fon	fon	BJ	10912	33.19	10039	459	414	afrispeech
+ary_Arab	Moroccan Arabic (Arab script)	ary	DZ	1922	33.19	1488	0	434	omnilingual
+xhosa_xho	Xhosa	xho	ZA	11485	33.15	10073	658	754	afrispeech
+otetela_tll	Otetela	tll	CD	11301	31.53	10316	463	522	afrispeech
+xmw_Latn	Tsimihety Malagasy	xmw	MG	1800	31.08	1800	0	0	omnilingual
+txy_Latn	Tanosy Malagasy	txy	MG	1795	30.99	898	448	449	omnilingual
+lingala_lin	Lingala	lin	CD	10080	30.71	9076	414	590	afrispeech
+ewe_ewe	Ewe	ewe	GH	9760	29.41	8633	611	516	afrispeech
+chitumbuka_tum	Chitumbuka	tum	MW	10365	29.31	9303	623	439	afrispeech
+ronga_rng	Ronga	rng	MZ	10285	29.11	9138	642	505	afrispeech
+kamba_kam	Kamba	kam	KE	9567	28.86	8603	348	616	afrispeech
+kikuyu_kik	Kikuyu	kik	KE	9640	28.82	8808	413	419	afrispeech
+hausa_hau	Hausa	hau	NG	9367	28.37	8364	509	494	afrispeech
+macua_vmw	Macua	vmw	MZ	10144	28.02	8966	682	496	afrispeech
+kongo_kon	Kongo	kon	CD	9980	27.82	8828	474	678	afrispeech
+Matengo	Matengo	mgv	TZ	7792	27.32	7402	0	390	open-bible
+isoko_iso	Isoko	iso	NG	9474	26.84	8544	447	483	afrispeech
+krio_kri	Krio	kri	SL	9230	26.16	8293	553	384	afrispeech
+edo_bin	Edo	bin	NG	9028	26.04	8323	346	359	afrispeech
+bmq_Latn	Bomu	bmq	BF	1500	25.9	1500	0	0	omnilingual
+ffm_Latn	Maasina Fulfulde	ffm	BF	1500	25.9	1500	0	0	omnilingual
+skg_Latn	Sakalava Malagasy	skg	MG	1499	25.88	1499	0	0	omnilingual
+arq_Arab	Algerian Arabic (Arab script)	arq	DZ	1489	25.71	1489	0	0	omnilingual
+urhobo_urh	Urhobo	urh	NG	8944	25.67	7946	447	551	afrispeech
+oromo_orm	Oromo	orm	ET	8933	25.66	7778	557	598	afrispeech
+fuq_Latn	Central-Eastern Niger Fulfulde	fuq	ML	1476	25.48	600	431	445	omnilingual
+aec_Arab	Saidi Arabic (Arab script)	aec	EG	1468	25.35	1168	150	150	omnilingual
+mas_asr	Masaaba	myx	UG	8574	24.46	6867	849	858	waxal
+esan_ish	Esan	ish	NG	8499	24.19	7356	708	435	afrispeech
+nyn_asr	Nyankole	nyn	UG	8472	24.17	6783	831	858	waxal
+ful_tts	Fulah	ful	NG	3878	23.91	3100	380	398	waxal
+frafra_gur	Frafra	gur	GH	7960	23.82	7140	398	422	afrispeech
+sesotho_south_africa_sot	Sesotho (South Africa)	sot	ZA	8149	23.32	7583	332	234	afrispeech
+sena_seh	Sena	seh	MZ	7849	22.84	7019	341	489	afrispeech
+sesotho_lesotho_sot	Sesotho (Lesotho)	sot	ZA	7944	22.76	7052	390	502	afrispeech
+lenje_leh	Lenje	leh	ZM	8099	22.52	7198	412	489	afrispeech
+sog_asr	Soga	xog	UG	7877	22.47	6219	841	817	waxal
+liberian_english_lir	Liberian English	lir	LR	7733	22.06	7112	335	286	afrispeech
+fante_fat	Fante	fat	GH	7631	22.04	6942	277	412	afrispeech
+dagaare_dga	Dagaare	dga	GH	7477	21.53	6575	375	527	afrispeech
+nzema_nzi	Nzema	nzi	GH	7319	21.14	6413	532	374	afrispeech
+pidgin_west_africa_wes	Pidgin (West Africa)	wes	CM	7405	21.09	6785	227	393	afrispeech
+kisi_kss	Kisi	kss	LR	7739	20.99	6967	377	395	afrispeech
+fue_Latn	Borgu Fulfulde	fue	BJ	1197	20.67	1197	0	0	omnilingual
+fat_Latn	Fanti	fat	GH	1197	20.67	1197	0	0	omnilingual
+moore_mos	Moore	mos	BF	6785	20.51	6293	196	296	afrispeech
+ahanta_aha	Ahanta	aha	GH	6908	20.3	6038	441	429	afrispeech
+gsl_Latn	Gusilay	gsl	SN	1173	20.25	775	238	160	omnilingual
+rof_Latn	Rombo	rof	KE	1170	20.2	653	241	276	omnilingual
+douala_dua	Douala	dua	CM	6521	20.12	5832	145	544	afrispeech
+luo_luo	Luo	luo	KE	6829	19.66	5959	367	503	afrispeech
+sepedi_nso	Sepedi	nso	ZA	7016	19.59	6435	396	185	afrispeech
+bissau_guinean_creole_pov	Bissau Guinean Creole	pov	GW	6573	19.35	5899	375	299	afrispeech
+lug_asr	Ganda	lug	UG	6757	19.27	5455	664	638	waxal
+apd_Arab	Sudanese Arabic (Arab script)	apd	CF	1097	18.94	816	156	125	omnilingual
+fia_Latn	Nobiin	fia	EG	1093	18.87	668	262	163	omnilingual
+swahili_congo_swc	Swahili (Congo)	swc	CD	6493	18.67	5670	503	320	afrispeech
+mlq_Latn	Western Maninkakan	mlq	GM	1075	18.56	621	200	254	omnilingual
+aju_Hebr	Judeo-Moroccan Arabic (Hebr script)	aju	MA	1015	17.53	1015	0	0	omnilingual
+sehwi_sfw	Sehwi	sfw	GH	6024	17.48	5488	199	337	afrispeech
+runyankore_nyn	Runyankore	nyn	UG	5605	17.1	4736	432	437	afrispeech
+boulou_bum	Boulou	bum	CM	5692	16.93	5153	231	308	afrispeech
+kwanyama_kua	Kwanyama	kua	NA	6107	16.66	5467	239	401	afrispeech
+ttj_Latn	Tooro	ttj	CD	958	16.54	674	110	174	omnilingual
+yor_tts	Yoruba	yor	NG	2611	16.1	2233	201	177	waxal
+koo_Latn	Konzo	koo	CD	923	15.94	654	146	123	omnilingual
+jula_dyu	Jula	dyu	BF	5486	15.85	5019	258	209	afrispeech
+fuh_Latn	Western Niger Fulfulde	fuh	BF	906	15.64	906	0	0	omnilingual
+tdx_Latn	Tandroy-Mahafaly Malagasy	tdx	MG	900	15.54	450	150	300	omnilingual
+tshwa_tsc	Tshwa	tsc	MZ	5221	14.99	4651	209	361	afrispeech
+ach_asr	Acoli	ach	UG	5155	14.7	4108	519	528	waxal
+mfv_Latn	Mandjak	mfv	GM	827	14.28	488	179	160	omnilingual
+yoruba_yor	Yoruba	yor	NG	4960	14.19	4504	216	240	afrispeech
+lag_Latn	Rangi	lag	TZ	820	14.16	477	180	163	omnilingual
+bjt_Latn	Balanta-Ganja	bjt	GW	808	13.95	576	109	123	omnilingual
+cgg_Latn	Chiga	cgg	CD	805	13.9	559	126	120	omnilingual
+setswana_tsn	Setswana	tsn	ZA	4828	13.84	4232	344	252	afrispeech
+kikongo_ya_leta_ktu	Kikongo ya Leta	ktu	CD	4754	13.81	4232	262	260	afrispeech
+lir_Latn	Liberian English	lir	LR	797	13.76	650	71	76	omnilingual
+wof_Latn	Gambian Wolof	wof	GM	765	13.21	548	116	101	omnilingual
+chichewa_nya	Chichewa	nya	MW	3884	12.81	3407	231	246	afrispeech
+keu_Latn	Akebu	keu	TG	734	12.67	494	91	149	omnilingual
+sango_sag	Sango	sag	CF	4193	12.6	3645	261	287	afrispeech
+ach_tts	Acoli	ach	UG	2031	12.52	1621	218	192	waxal
+kik_tts	Kikuyu	kik	KE	2026	12.49	1602	210	214	waxal
+lug_tts	Ganda	lug	UG	2024	12.48	1608	211	205	waxal
+mashi_shr	Mashi	shr	CD	4263	12.41	3855	273	135	afrispeech
+pcm_tts	Nigerian Pidgin	pcm	NG	1993	12.29	1590	199	204	waxal
+luo_tts	Luo (Kenya and Tanzania)	luo	KE	1989	12.26	1552	228	209	waxal
+nyn_tts	Nyankole	nyn	UG	1987	12.25	1597	199	191	waxal
+seychelles_creole_crs	Seychelles Creole	crs	SC	4269	12.16	3983	72	214	afrispeech
+hau_tts	Hausa	hau	NG	1971	12.15	1572	202	197	waxal
+bda_Latn	Bayot	bda	GM	685	11.83	450	158	77	omnilingual
+ibo_tts	Igbo	ibo	NG	1911	11.78	1552	159	200	waxal
+fang_fan	Fang	fan	GQ	3969	11.68	3630	184	155	afrispeech
+tuy_Latn	Tugen	tuy	KE	667	11.52	407	104	156	omnilingual
+fip_Latn	Fipa	fip	MW	664	11.46	410	106	148	omnilingual
+gwe_Latn	Gweno	gwe	KE	657	11.34	401	123	133	omnilingual
+luganda_lug	Luganda	lug	UG	3617	11.25	3237	75	305	afrispeech
+kituba_ktu	Kituba	ktu	CD	3935	11.24	3639	195	101	afrispeech
+tshiluba_lua	Tshiluba	lua	CD	3532	11.24	3234	158	140	afrispeech
+eyo_Latn	Keiyo	eyo	KE	647	11.17	398	109	140	omnilingual
+gur_Latn	Farefare	gur	BF	642	11.08	476	66	100	omnilingual
+swa_tts	Swahili (macrolanguage)	swa	KE	1778	10.96	1387	192	199	waxal
+chopi_cce	Chopi	cce	MZ	3789	10.8	3414	144	231	afrispeech
+wji_Latn	Warji	wji	NG	615	10.62	443	98	74	omnilingual
+cibemba_bem	Cibemba	bem	ZM	3823	10.56	3333	170	320	afrispeech
+bqg_Latn	Bago-Kusuntu	bqg	TG	609	10.52	352	99	158	omnilingual
+anw_Latn	Anaang	anw	NG	603	10.41	369	115	119	omnilingual
+thv_Tfng	Tahaggart Tamahaq (Tfng script)	thv	DZ	596	10.29	298	149	149	omnilingual
+ngangela_nba	Ngangela	nba	AO	3638	10.28	3348	166	124	afrispeech
+gol_Latn	Gola	gol	LR	593	10.24	347	120	126	omnilingual
+ndau_western_ndc	Ndau (Western)	ndc	MZ	3621	10.22	3235	239	147	afrispeech
+gby_Latn	Gbari	gby	NG	580	10.01	409	97	74	omnilingual
+phimbi_phm	Phimbi	phm	MZ	3561	10.0	3172	121	268	afrispeech
+gbr_Latn	Gbagyi	gbr	NG	569	9.82	396	94	79	omnilingual
+ldb_Latn	Dũya	ldb	NG	565	9.76	401	74	90	omnilingual
+kna_Latn	Dera (Nigeria)	kna	NG	561	9.69	376	77	108	omnilingual
+ahl_Latn	Igo	ahl	GH	555	9.58	376	87	92	omnilingual
+msw_Latn	Mansoanka	msw	GM	555	9.58	379	88	88	omnilingual
+ndi_Latn	Samba Leko	ndi	CM	555	9.58	349	134	72	omnilingual
+snk_Latn	Soninke	snk	GM	554	9.57	385	91	78	omnilingual
+pip_Latn	Pero	pip	NG	550	9.5	322	124	104	omnilingual
+bou_Latn	Bondei	bou	TZ	546	9.43	373	103	70	omnilingual
+gdf_Latn	Guduf-Gava	gdf	CM	546	9.43	376	102	68	omnilingual
+swati_ssw	Swati	ssw	ZA	3236	9.42	2767	170	299	afrispeech
+cky_Latn	Cakfem-Mushere	cky	NG	545	9.41	307	123	115	omnilingual
+ewe_tts	Ewe	ewe	GH	1519	9.36	1215	152	152	waxal
+bys_Latn	Burak	bys	NG	539	9.31	360	103	76	omnilingual
+idu_Latn	Idoma	idu	NG	535	9.24	348	115	72	omnilingual
+ijn_Latn	Kalabari	ijn	NG	535	9.24	341	94	100	omnilingual
+vai_Latn	Vai	vai	LR	533	9.2	299	87	147	omnilingual
+its_Latn	Isekiri	its	NG	532	9.19	369	80	83	omnilingual
+ngi_Latn	Ngizim	ngi	NG	529	9.13	352	104	73	omnilingual
+kqo_Latn	Eastern Krahn	kqo	CI	528	9.12	280	106	142	omnilingual
+afo_Latn	Eloyi	afo	NG	527	9.1	357	70	100	omnilingual
+mne_Latn	Naba	mne	TD	526	9.08	251	176	99	omnilingual
+ala_Latn	Alago	ala	NG	524	9.05	341	86	97	omnilingual
+mgi_Latn	Lijili	mgi	NG	521	9.0	353	70	98	omnilingual
+byc_Latn	Ubaghara	byc	NG	521	9.0	349	86	86	omnilingual
+zga_Latn	Kinga	zga	MW	520	8.98	520	0	0	omnilingual
+toupouri_tui	Toupouri	tui	CM	3070	8.96	2588	292	190	afrispeech
+abr_Latn	Abron	abr	CI	518	8.94	302	87	129	omnilingual
+elm_Latn	Eleme	elm	NG	516	8.91	350	90	76	omnilingual
+mfo_Latn	Mbe	mfo	NG	514	8.87	341	80	93	omnilingual
+ogo_Latn	Khana	ogo	NG	509	8.79	332	77	100	omnilingual
+deg_Latn	Degema	deg	NG	508	8.77	339	90	79	omnilingual
+etu_Latn	Ejagham	etu	CM	508	8.77	325	95	88	omnilingual
+ikw_Latn	Ikwere	ikw	NG	504	8.7	318	91	95	omnilingual
+ank_Latn	Goemai	ank	NG	503	8.68	325	107	71	omnilingual
+iso_Latn	Isoko	iso	NG	503	8.68	325	79	99	omnilingual
+bwr_Latn	Bura-Pabir	bwr	NG	502	8.67	352	82	68	omnilingual
+venda_ven	Venda	ven	ZA	2990	8.65	2721	135	134	afrispeech
+bzw_Latn	Basa (Nigeria)	bzw	NG	500	8.63	336	72	92	omnilingual
+ekr_Latn	Yace	ekr	NG	500	8.63	351	74	75	omnilingual
+itw_Latn	Ito	itw	NG	497	8.58	341	79	77	omnilingual
+mkf_Latn	Miya	mkf	NG	497	8.58	342	67	88	omnilingual
+fuv_Latn	Nigerian Fulfulde	fuv	CM	496	8.56	347	74	75	omnilingual
+abn_Latn	Abua	abn	NG	495	8.55	317	86	92	omnilingual
+nbh_Latn	Ngamo	nbh	NG	494	8.53	311	73	110	omnilingual
+kua_Latn	Kuanyama	kua	AO	491	8.48	312	95	84	omnilingual
+kwm_Latn	Kwambi	kwm	NA	491	8.48	328	75	88	omnilingual
+wja_Latn	Waja	wja	NG	491	8.48	345	73	73	omnilingual
+gyz_Latn	Geji	gyz	NG	490	8.46	315	92	83	omnilingual
+bde_Latn	Bade	bde	NG	489	8.44	314	101	74	omnilingual
+lto_Latn	Tsotso	lto	KE	489	8.44	316	98	75	omnilingual
+rag_Latn	Logooli	rag	KE	488	8.43	306	72	110	omnilingual
+cfa_Latn	Dijim-Bwilim	cfa	NG	487	8.41	334	69	84	omnilingual
+juk_Latn	Wapan	juk	NG	487	8.41	307	75	105	omnilingual
+bux_Latn	Boghom	bux	NG	486	8.39	273	118	95	omnilingual
+ckl_Latn	Cibak	ckl	NG	486	8.39	299	78	109	omnilingual
+bcs_Latn	Kohumono	bcs	NG	486	8.39	347	70	69	omnilingual
+ver_Latn	Mom Jango	ver	CM	486	8.39	323	68	95	omnilingual
+ahs_Latn	Ashe	ahs	NG	484	8.36	329	84	71	omnilingual
+nyungwe_nyu	Nyungwe	nyu	MZ	2976	8.35	2744	63	169	afrispeech
+lwg_Latn	Wanga	lwg	KE	483	8.34	297	76	110	omnilingual
+kimbundu_kmb	Kimbundu	kmb	AO	2894	8.32	2468	249	177	afrispeech
+maf_Latn	Mafa	maf	CM	482	8.32	325	88	69	omnilingual
+odu_Latn	Odual	odu	NG	482	8.32	307	90	85	omnilingual
+ish_Latn	Esan	ish	NG	481	8.31	308	98	75	omnilingual
+guz_Latn	Gusii	guz	KE	480	8.29	287	117	76	omnilingual
+tuv_Latn	Turkana	tuv	ET	479	8.27	285	106	88	omnilingual
+ets_Latn	Yekhee	ets	NG	478	8.25	320	79	79	omnilingual
+cen_Latn	Cen	cen	NG	477	8.24	313	90	74	omnilingual
+hwo_Latn	Hwana	hwo	NG	477	8.24	327	68	82	omnilingual
+kmy_Latn	Koma	kmy	CM	477	8.24	326	65	86	omnilingual
+kpo_Latn	Ikposo	kpo	GH	476	8.22	293	90	93	omnilingual
+tan_Latn	Tangale	tan	NG	476	8.22	323	69	84	omnilingual
+kai_Latn	Karekare	kai	NG	474	8.18	331	69	74	omnilingual
+hia_Latn	Lamang	hia	NG	474	8.18	324	85	65	omnilingual
+mfn_Latn	Cross River Mbembe	mfn	NG	473	8.17	284	89	100	omnilingual
+ida_Latn	Idakho-Isukha-Tiriki	ida	KE	473	8.17	305	100	68	omnilingual
+kinande_nnb	Kinande	nnb	CD	2871	8.15	2637	44	190	afrispeech
+hbb_Latn	Huba	hbb	NG	470	8.12	288	63	119	omnilingual
+mrt_Latn	Marghi Central	mrt	NG	470	8.12	297	80	93	omnilingual
+wci_Latn	Waci Gbe	wci	BJ	470	8.12	308	95	67	omnilingual
+kcq_Latn	Kamo	kcq	NG	469	8.1	321	66	82	omnilingual
+yes_Latn	Nyankpa	yes	NG	469	8.1	310	68	91	omnilingual
+nsenga_mozambique_nse	Nsenga (Mozambique)	nse	MZ	2865	8.09	2385	313	167	afrispeech
+baoule_bci	Baoule	bci	CI	2657	8.08	2307	125	225	afrispeech
+bky_Latn	Bokyi	bky	CM	468	8.08	297	93	78	omnilingual
+juo_Latn	Jiba	juo	NG	467	8.06	321	68	78	omnilingual
+piy_Latn	Piya-Kwonci	piy	NG	467	8.06	324	76	67	omnilingual
+dbd_Latn	Dadiya	dbd	NG	466	8.05	289	70	107	omnilingual
+ijc_Latn	Izon	ijc	NG	466	8.05	290	80	96	omnilingual
+pko_Latn	Pökoot	pko	KE	465	8.03	298	70	97	omnilingual
+lla_Latn	Lala-Roba	lla	NG	463	7.99	301	91	71	omnilingual
+gokana_gkn	Gokana	gkn	NG	2808	7.98	2567	179	62	afrispeech
+kaj_Latn	Jju	kaj	NG	461	7.96	272	91	98	omnilingual
+lkb_Latn	Kabras	lkb	KE	461	7.96	284	72	105	omnilingual
+lnu_Latn	Longuda	lnu	NG	461	7.96	299	63	99	omnilingual
+nja_Latn	Nzanyi	nja	CM	460	7.94	302	87	71	omnilingual
+yer_Latn	Tarok	yer	NG	460	7.94	298	70	92	omnilingual
+bdm_Latn	Buduma	bdm	CM	459	7.93	301	90	68	omnilingual
+anc_Latn	Ngas	anc	NG	458	7.91	314	65	79	omnilingual
+kuh_Latn	Kushi	kuh	NG	457	7.89	308	77	72	omnilingual
+mfm_Latn	Marghi South	mfm	NG	457	7.89	315	78	64	omnilingual
+ndo_Latn	Ndonga	ndo	AO	457	7.89	285	68	104	omnilingual
+ccg_Latn	Samba Daka	ccg	CM	457	7.89	292	95	70	omnilingual
+say_Latn	Saya	say	NG	457	7.89	260	103	94	omnilingual
+ego_Latn	Eggon	ego	NG	456	7.87	305	68	83	omnilingual
+ebu_Latn	Embu	ebu	KE	456	7.87	272	71	113	omnilingual
+glw_Latn	Glavda	glw	CM	456	7.87	322	65	69	omnilingual
+kbl_Latn	Kanembu	kbl	NE	456	7.87	306	79	71	omnilingual
+fkk_Latn	Kirya-Konzəl	fkk	NG	456	7.87	290	88	78	omnilingual
+bbu_Latn	Kulung (Nigeria)	bbu	NG	454	7.84	281	67	106	omnilingual
+mer_Latn	Meru	mer	KE	452	7.8	279	105	68	omnilingual
+mde_Latn	Maba (Chad)	mde	TD	445	7.68	445	0	0	omnilingual
+tul_Latn	Tula	tul	NG	445	7.68	263	112	70	omnilingual
+aal_Latn	Afade	aal	CM	444	7.67	310	64	70	omnilingual
+bcy_Latn	Bacama	bcy	NG	443	7.65	278	99	66	omnilingual
+her_Latn	Herero	her	AO	443	7.65	281	95	67	omnilingual
+ndebele_zimbabwe_nde	Ndebele (Zimbabwe)	nde	ZW	2552	7.62	2308	81	163	afrispeech
+dje_Latn	Zarma	dje	BF	441	7.61	316	61	64	omnilingual
+havu_hav	Havu	hav	CD	2619	7.59	2447	172	0	afrispeech
+bsj_Latn	Bangwinji	bsj	NG	439	7.58	286	84	69	omnilingual
+dgh_Latn	Dghwede	dgh	CM	439	7.58	263	109	67	omnilingual
+tuq_Latn	Tedaga	tuq	LY	438	7.56	287	87	64	omnilingual
+ttr_Latn	Tera	ttr	NG	436	7.53	294	75	67	omnilingual
+bau_tts	Baoulé	bci	CI	1216	7.5	972	122	122	waxal
+ibinda_yom	Ibinda	yom	CD	2672	7.46	2508	59	105	afrispeech
+dzg_Latn	Dazaga	dzg	LY	428	7.39	261	65	102	omnilingual
+awo_Latn	Awak	awo	NG	427	7.37	265	71	91	omnilingual
+fat_tts	Fanti	fat	GH	1171	7.22	953	117	101	waxal
+xpe_Latn	Liberia Kpelle	xpe	GN	418	7.22	266	84	68	omnilingual
+yay_Latn	Agwagwune	yay	NG	396	6.84	227	87	82	omnilingual
+dinka_din	Dinka	din	SS	2496	6.84	2178	99	219	afrispeech
+itsekiri_its	Itsekiri	its	NG	2387	6.78	2387	0	0	afrispeech
+kwangali_kwn	Kwangali	kwn	NA	2258	6.75	2139	81	38	afrispeech
+twi_tts	Twi	twi	GH	1093	6.74	872	117	104	waxal
+chitonga_toi	Chitonga	toi	ZM	2487	6.61	2220	195	72	afrispeech
+bassa_liberia_bsq	Bassa (Liberia)	bsq	LR	2284	6.07	2135	12	137	afrispeech
+cinyanja_nya	Cinyanja	nya	MW	1883	5.79	1765	42	76	afrispeech
+ndonga_ndo	Ndonga	ndo	NA	1920	5.77	1745	63	112	afrispeech
+aja_ajg	Aja	ajg	BJ	1942	5.71	1765	105	72	afrispeech
+kpelle_xpe	Kpelle	xpe	LR	1933	5.7	1743	112	78	afrispeech
+r_union_creole_rcf	Réunion Creole	rcf	RE	1803	5.25	1718	23	62	afrispeech
+avl_Arab	Eastern Egyptian Bedawi Arabic (Arab script)	avl	EG	300	5.18	300	0	0	omnilingual
+aao_Arab	Algerian Saharan Arabic (Arab script)	aao	DZ	298	5.15	298	0	0	omnilingual
+ndebele_nbl	Ndebele	nbl	ZA	1985	5.15	1819	134	32	afrispeech
+shu_Latn	Chadian Arabic	shu	CM	297	5.13	297	0	0	omnilingual
+abbey_aba	Abbey	aba	CI	1776	5.03	1574	166	36	afrispeech
+yombe_yom	Yombe	yom	CD	1634	4.88	1390	149	95	afrispeech
+kikongo_kwy	Kikongo	kwy	AO	1769	4.87	1623	103	43	afrispeech
+umbundu_umb	Umbundu	umb	AO	1630	4.7	1340	227	63	afrispeech
+chiyao_yao	Chiyao	yao	MZ	1647	4.61	1423	103	121	afrispeech
+loma_lom	Loma	lom	LR	1540	4.52	1350	41	149	afrispeech
+wolaita_wal	Wolaita	wal	ET	1476	4.28	1250	133	93	afrispeech
+chitonga_malawi_tog	Chitonga (Malawi)	tog	MW	1480	4.16	1363	65	52	afrispeech
+tiv_tiv	Tiv	tiv	NG	1374	4.03	1220	119	35	afrispeech
+lari_ldi	Lari	ldi	CG	1359	3.85	1284	42	33	afrispeech
+meru_mer	Meru	mer	KE	1277	3.83	1139	138	0	afrispeech
+ewondo_ewo	Ewondo	ewo	CM	1305	3.71	1134	32	139	afrispeech
+kabyle_kab	Kabyle	kab	DZ	1188	3.65	1068	64	56	afrispeech
+khana_ogo	Khana	ogo	NG	1256	3.62	921	139	196	afrispeech
+gitonga_toh	Gitonga	toh	MZ	1319	3.6	1228	4	87	afrispeech
+tewe_twx	Tewe	twx	MZ	1251	3.39	1076	148	27	afrispeech
+dangme_ada	Dangme	ada	GH	1177	3.37	941	154	82	afrispeech
+ndau_ndc	Ndau	ndc	MZ	1231	3.34	1147	68	16	afrispeech
+gu_r_gxx	Guéré	gxx	CI	1057	3.01	953	67	37	afrispeech
+wolof_wol	Wolof	wol	SN	846	2.5	803	10	33	afrispeech
+damara_naq	Damara	naq	NA	789	2.46	698	62	29	afrispeech
+swahili_katanga_swc	Swahili (Katanga)	swc	CD	866	2.4	798	32	36	afrispeech
+yacouba_daf	Yacouba	daf	CI	787	2.26	656	0	131	afrispeech
+manyawa_mny	Manyawa	mny	MZ	697	1.94	697	0	0	afrispeech
+makhuwa_marrevone_xmc	Makhuwa-Marrevone	xmc	MZ	704	1.87	635	41	28	afrispeech
+makhuwa_meetto_mgh	Makhuwa-Meetto	mgh	MZ	671	1.83	552	85	34	afrispeech
+cinamwanga_mwn	Cinamwanga	mwn	ZM	553	1.66	500	53	0	afrispeech
+chitonga_zimbabwe_toi	Chitonga (Zimbabwe)	toi	ZW	486	1.41	452	0	34	afrispeech
+atti_ati	Attié	ati	CI	482	1.4	477	5	0	afrispeech
+lunda_lun	Lunda	lun	ZM	423	1.11	322	101	0	afrispeech
+lomwe_ngl	Lomwe	ngl	MZ	378	1.07	373	5	0	afrispeech
+chuabo_chw	Chuabo	chw	MZ	390	1.03	373	0	17	afrispeech
+mambwe_lungu_mgr	Mambwe-Lungu	mgr	ZM	331	0.93	264	34	33	afrispeech
+ijaw_ijc	Ijaw	ijc	NG	312	0.88	292	0	20	afrispeech
+ngbandi_northern_ngb	Ngbandi (Northern)	ngb	CD	255	0.78	222	33	0	afrispeech
+makhuwa_shirima_vmk	Makhuwa-Shirima	vmk	MZ	277	0.77	277	0	0	afrispeech
+herero_her	Herero	her	NA	192	0.61	192	0	0	afrispeech
+chokwe_cjk	Chokwe	cjk	AO	177	0.56	169	0	8	afrispeech
+taabwa_tap	Taabwa	tap	CD	195	0.56	163	0	32	afrispeech
+kisonge_sop	Kisonge	sop	CD	141	0.4	141	0	0	afrispeech
+kanyok_kny	Kanyok	kny	CD	109	0.28	109	0	0	afrispeech
+luvale_lue	Luvale	lue	ZM	20	0.07	20	0	0	afrispeech

@@ -17,7 +17,7 @@ import math
 from collections import defaultdict
 from typing import Iterable
 
-from .catalog import LanguageEntry, load_catalog
+from .catalog import LanguageEntry, load_catalog, resolve_dataset
 
 
 def filter_catalog(
@@ -27,6 +27,7 @@ def filter_catalog(
     max_hours: float | None = None,
     min_clips: int = 0,
     countries: Iterable[str] | None = None,
+    datasets: Iterable[str] | None = None,
     split: str = "train",
     require_split: bool = True,
 ) -> list[LanguageEntry]:
@@ -36,12 +37,24 @@ def filter_catalog(
         min_hours / max_hours: keep languages whose total hours fall in range.
         min_clips: keep languages with at least this many clips.
         countries: if given, keep only these ISO 3166 country codes.
+        datasets: if given, keep only these source datasets (keys like ``waxal``
+            or full HF ids). Unknown keys are ignored.
         split: which split the samples will be drawn from later.
         require_split: drop languages that have zero clips in ``split``
             (e.g. a language with an empty test set is useless if split="test").
     """
     entries = list(entries) if entries is not None else load_catalog()
     country_set = {c.upper() for c in countries} if countries else None
+    if datasets:
+        wanted = set()
+        for d in datasets:
+            try:
+                wanted.add(resolve_dataset(d))
+            except Exception:
+                continue
+        entries = [e for e in entries if e.dataset_id in wanted]
+        if not entries:
+            return []
 
     out = []
     for e in entries:
