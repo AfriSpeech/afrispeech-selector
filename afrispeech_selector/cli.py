@@ -23,7 +23,7 @@ from __future__ import annotations
 import argparse
 import sys
 
-from .catalog import COUNTRY_NAMES, load_catalog
+from .catalog import COUNTRY_NAMES, DATASETS, load_catalog
 from .selector import filter_catalog, plan_samples, select_top
 
 
@@ -37,6 +37,20 @@ def _fmt_plan(plan: list[dict]) -> str:
     for p in plan:
         lines.append("  ".join(f"{str(p.get(c,'')):<{w}}"[:w] for c, w in cols))
     return "\n".join(lines)
+
+
+def _split_datasets(arg: str | None) -> list[str] | None:
+    if not arg:
+        return None
+    out = []
+    for tok in arg.split(","):
+        tok = tok.strip()
+        if not tok:
+            continue
+        if tok not in DATASETS:
+            sys.exit(f"Unknown source '{tok}'. Choose from: {', '.join(sorted(DATASETS))}.")
+        out.append(tok)
+    return out or None
 
 
 def _resolve_languages(arg: str) -> list[str]:
@@ -70,6 +84,9 @@ def build_parser() -> argparse.ArgumentParser:
     sel.add_argument("--max-hours", type=float, help="drop languages above this many hours")
     sel.add_argument("--min-clips", type=int, default=0, help="drop languages with fewer clips")
     sel.add_argument("--countries", help="comma-separated ISO country codes to restrict to (e.g. GH,NG)")
+    sel.add_argument("--dataset", default=None,
+                     help=f"restrict to one or more source datasets (comma list): "
+                          f"{', '.join(sorted(DATASETS))}. Default: all.")
     sel.add_argument("--split", choices=["train", "val", "test", "all"], default="train")
 
     siz = p.add_argument_group("sizing")
@@ -105,7 +122,7 @@ def build_parser() -> argparse.ArgumentParser:
                       help="force streaming pull (default: on when a per-language limit is set)")
     misc.add_argument("--no-streaming", dest="streaming", action="store_false")
     misc.add_argument("--allow-full", action="store_true",
-                      help="permit an uncapped pull (downloads whole shards, ~65 GB)")
+                      help="permit an uncapped pull (downloads whole shards — hundreds of GB)")
     misc.add_argument("-y", "--yes", action="store_true",
                       help="skip the confirmation prompt when the requested hours exceed what's available")
     misc.add_argument("--recipe", action="store_true",
@@ -160,18 +177,20 @@ def main(argv: list[str] | None = None) -> int:
         pool = filter_catalog(
             min_hours=args.min_hours, max_hours=args.max_hours, min_clips=args.min_clips,
             countries=args.countries.split(",") if args.countries else None,
+            datasets=_split_datasets(args.dataset),
             split=args.split, require_split=False,
         )
         if args.top:  # also honour a top-N selection if given
             pool = select_top(pool, args.top, proportional=args.proportional,
                               max_per_country=args.max_per_country)
         pool = sorted(pool, key=lambda x: -x.hours)
-        hdr = f"{'subset (--languages)':<28} {'language':<24} {'cc':<3} {'country':<22} {'hours':>7} {'clips':>7}"
+        hdr = (f"{'subset (--languages)':<30} {'language':<26} {'cc':<3} {'country':<22} "
+               f"{'hours':>7} {'clips':>7}  src")
         print(hdr)
         print("-" * len(hdr))
         for e in pool:
-            print(f"{e.subset:<28} {e.language:<24} {e.country:<3} "
-                  f"{COUNTRY_NAMES.get(e.country, ''):<22} {e.hours:>6.1f}h {e.clips:>7}")
+            print(f"{e.subset:<30} {e.language:<26} {e.country:<3} "
+                  f"{COUNTRY_NAMES.get(e.country, ''):<22} {e.hours:>6.1f}h {e.clips:>7}  {e.dataset}")
         total_h = round(sum(e.hours for e in pool), 1)
         print(f"\n{len(pool)} languages, {total_h} h total.", file=sys.stderr)
         return 0
@@ -185,6 +204,7 @@ def main(argv: list[str] | None = None) -> int:
         pool = filter_catalog(
             min_hours=args.min_hours, max_hours=args.max_hours, min_clips=args.min_clips,
             countries=args.countries.split(",") if args.countries else None,
+            datasets=_split_datasets(args.dataset),
             split=args.split,
         )
         if not pool:
@@ -234,9 +254,10 @@ def main(argv: list[str] | None = None) -> int:
         print(_recipe(chosen, args, secs))
         return 0
 
-    # ---- guard against an accidental 65 GB pull --------------------------- #
+    # ---- guard against an accidental uncapped pull ------------------------- #
     if cap is None and secs is None and not args.allow_full:
-        sys.exit("No per-language limit set — that pulls whole shards (~65 GB). "
+        sys.exit("No per-language limit set — that pulls whole shards (hundreds of GB "
+                 "across the source corpora). "
                  "Set --per-language or --max-hours-per-lang, or pass --allow-full.")
 
     # ---- confirm if we can't meet the requested hours --------------------- #

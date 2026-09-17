@@ -30,6 +30,24 @@ def test_resolve_languages_valid_and_invalid():
         raise AssertionError("expected SystemExit on unknown language")
 
 
+def test_split_datasets_valid_and_invalid():
+    assert cli._split_datasets("waxal,open-bible") == ["waxal", "open-bible"]
+    assert cli._split_datasets(None) is None
+    try:
+        cli._split_datasets("nonsense")
+    except SystemExit as e:
+        assert "Unknown source" in str(e)
+    else:
+        raise AssertionError("expected SystemExit on unknown dataset")
+
+
+def test_list_langs_shows_source_column(capsys):
+    rc = cli.main(["--list-langs", "--dataset", "open-bible"])
+    assert rc == 0
+    out = capsys.readouterr().out
+    assert "src" in out and "open-bible" in out and "Chichewa" in out
+
+
 def test_dry_run_exits_zero(capsys):
     rc = cli.main(["--top", "3", "--per-language", "50", "--dry-run"])
     assert rc == 0
